@@ -113,26 +113,23 @@ void timestep(float dt, Particle & b)
 
 void Config::read(const std::string & fname)
 {
-  // open file (for reading)
+ 
   std::ifstream fin(fname);
-  
-  // read it
   std::string line;
 
-  readline; // read first line
+  readline; 
   TMIN = readnumber;
-  readline // read second line
+  readline;
   NSTEPS = std::stoi(line.erase(line.find('#')));
-  readline // read next line
+  readline;
   DT = readnumber;
-  readline // read next line
+  readline;
   G = readnumber;
-  readline // read next line
+  readline;
   B = readnumber;
-  readline // read next line
+  readline;
   K = readnumber;
 
-  // close it
   fin.close();
 }
 
@@ -140,9 +137,8 @@ void Config::read(const std::string & fname)
 
 void Particle::read(const std::string & fname)
 {
-  // open file (for reading)
+
   std::ifstream fin(fname);
-  // read it
   std::string line;
 
   readline;
@@ -171,8 +167,6 @@ void Particle::read(const std::string & fname)
 	readline;
   F[2] = readnumber;
 
-
-  // close it
   fin.close();
 }
 
