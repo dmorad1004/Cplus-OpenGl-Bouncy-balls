@@ -3,6 +3,7 @@
 
 void Draw(void);
 void Initialize();
+
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
