@@ -4,7 +4,7 @@
 //dividiremos la esfera en trozos discretos por cordenadas esféricas, variando phi y theta
 GLfloat RedMaterial[4] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat BlueMaterial[4] = { 0.0, 0.0, 1.0, 1.0 };
-GLfloat WhiteMaterialO[4] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat WhiteMaterial[4] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat BlackMaterial[4] = { 0.0, 0.0, 0.0, 1.0 };
 
 const int Nphi = 40;
@@ -76,6 +76,36 @@ void DrawGrid(int HALF_GRID_SIZE, GLfloat GRID_SQUARE_SIZE, GLfloat GRID_HEIGHT)
 		glVertex3f((float)-HALF_GRID_SIZE*GRID_SQUARE_SIZE, GRID_HEIGHT, (float)i * GRID_SQUARE_SIZE);
 		glVertex3f((float)HALF_GRID_SIZE*GRID_SQUARE_SIZE , GRID_HEIGHT, (float)i * GRID_SQUARE_SIZE);
 	}
+	glEnd();
+
+}
+void DrawBoxGrid(GLfloat HalfLength, GLfloat centerx, GLfloat centery, GLfloat centerz)
+{
+	GLfloat L = HalfLength;
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, WhiteMaterial);
+	glNormal3f(0.0f, 1.0f, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(centerx-L, centery-L, centerz-L);
+	glVertex3f(centerx-L, centery-L, centerz+L);
+	glVertex3f(centerx+L, centery-L, centerz+L);
+	glVertex3f(centerx+L, centery-L, centerz-L);
+	glVertex3f(centerx-L, centery-L, centerz-L);
+	glVertex3f(centerx-L, centery+L, centerz-L);
+	glVertex3f(centerx-L, centery+L, centerz+L);
+	glVertex3f(centerx+L, centery+L, centerz+L);
+	glVertex3f(centerx+L, centery+L, centerz-L);
+	glVertex3f(centerx-L, centery+L, centerz-L);
+
+	glEnd();
+	
+	glBegin(GL_LINES);
+	glVertex3f(centerx - L, centery - L, centerz + L);
+	glVertex3f(centerx - L, centery + L, centerz + L);
+	glVertex3f(centerx + L, centery - L, centerz + L);
+	glVertex3f(centerx + L, centery + L, centerz + L);
+	glVertex3f(centerx + L, centery - L, centerz - L);
+	glVertex3f(centerx + L, centery + L, centerz - L);
+
 	glEnd();
 
 }
