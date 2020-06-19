@@ -43,6 +43,9 @@ void DrawSphere(GLfloat centerx, GLfloat centery, GLfloat centerz, GLfloat radiu
 			glVertex3f(centerx + radius * SphereVertices[ii * Ntheta * 3 + kk * 3],
 				centery + radius * SphereVertices[ii * Ntheta * 3 + kk * 3 + 1],
 				centerz + radius * SphereVertices[ii * Ntheta * 3 + kk * 3 + 2]);
+			glNormal3f( SphereVertices[(ii+1) * Ntheta * 3 + kk * 3],
+				 SphereVertices[(ii+1) * Ntheta * 3 + kk * 3 + 1],
+				SphereVertices[(ii+1) * Ntheta * 3 + kk * 3 + 2]);
 			glVertex3f(centerx + radius * SphereVertices[(ii + 1) * Ntheta * 3 + kk * 3],
 				centery + radius * SphereVertices[(ii + 1) * Ntheta * 3 + kk * 3 + 1],
 				centerz + radius * SphereVertices[(ii + 1) * Ntheta * 3 + kk * 3 + 2]);
@@ -54,6 +57,9 @@ void DrawSphere(GLfloat centerx, GLfloat centery, GLfloat centerz, GLfloat radiu
 		glVertex3f(centerx + radius * SphereVertices[ii * Ntheta * 3],
 			centery + radius * SphereVertices[ii * Ntheta * 3 + 1],
 			centerz + radius * SphereVertices[ii * Ntheta * 3 + 2]);
+		glNormal3f(SphereVertices[(1+ii) * Ntheta * 3],
+			 SphereVertices[(ii+1) * Ntheta * 3 + 1],
+			 SphereVertices[(ii+1) * Ntheta * 3 + 2]);
 		glVertex3f(centerx + radius * SphereVertices[(ii + 1) * Ntheta * 3],
 			centery + radius * SphereVertices[(ii + 1) * Ntheta * 3 + 1],
 			centerz + radius * SphereVertices[(ii + 1) * Ntheta * 3 + 2]);
