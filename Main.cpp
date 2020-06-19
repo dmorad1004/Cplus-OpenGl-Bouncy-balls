@@ -2,6 +2,7 @@
 #include<GL/freeglut.h>
 
 #include"DrawObjects.h"
+#include"LeapFrog.h"
 
 GLfloat Drotation = 0.05f;
 GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };  /* Red diffuse light. */
