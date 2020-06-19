@@ -4,7 +4,7 @@
 #define readline std::getline(fin, line);
 
 
-void compute_force(Particle& b, const Config& c)
+void compute_force(Particle & b, const Config & c)
 {
     // reset forces
     for (int ii = 0; ii < 3; ++ii) {
@@ -19,7 +19,7 @@ void compute_force(Particle& b, const Config& c)
     
 }
 
-void start_integration(Particle& b, float dt)
+void start_integration(Particle & b, float dt)
 {
     for (int ii = 0; ii < 3; ++ii) {
         b.V[ii] = b.V[ii] - dt * b.F[ii] / (2 * b.mass);
@@ -27,7 +27,7 @@ void start_integration(Particle& b, float dt)
 }
 
 
-void timestep(float dt, Particle& b)
+void timestep(float dt, Particle & b)
 {
     for (int ii = 0; ii < 3; ++ii) {
         b.V[ii] = b.V[ii] + b.F[ii] * dt / b.mass;
@@ -39,7 +39,7 @@ void timestep(float dt, Particle& b)
 
 
 
-void Config::read(const std::string& fname)
+void Config::read(const std::string & fname)
 {
 
     std::ifstream fin(fname);
@@ -63,7 +63,7 @@ void Config::read(const std::string& fname)
 
 
 
-void Particle::read(const std::string& fname)
+void Particle::read(const std::string & fname)
 {
 
     std::ifstream fin(fname);
