@@ -16,6 +16,11 @@ void compute_force(Particle & b, const Config & c)
     for (int ii = 0; ii < 3; ++ii) {
         b.F[ii] += -c.B * b.mass * b.V[ii];
     }
+    // bounce with floor
+    double delta = 0.0 - (b.R[1] - b.rad);
+    if (delta > 0) {
+    b.F[1] += c.K*delta;
+  }
     
 }
 
