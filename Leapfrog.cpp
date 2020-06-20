@@ -51,10 +51,6 @@ void Config::read(const std::string & fname)
     std::string line;
 
     readline;
-    TMIN = readnumber;
-    readline;
-    NSTEPS = std::stoi(line.erase(line.find('#')));
-    readline;
     DT = readnumber;
     readline;
     G = readnumber;
