@@ -18,6 +18,21 @@ void Draw(void);
 void Initialize();
 int main(int argc, char** argv)
 {
+    Particle ball;
+	ball.read("ball.txt");
+    ball.print("ball-out.txt");
+     Config conf; 
+    conf.read("conf.txt");
+    conf.print("conf-out.conf");
+
+	  // LeapFrog
+    for(int ii = 0; ii < conf.NSTEPS; ++ii) {
+    float t = conf.TMIN + ii*conf.DT;
+    timestep(conf.DT, ball);
+    compute_force(ball, conf);
+  }
+
+
 	FillSphereVertices();
 
 	glutInit(&argc, argv);
@@ -36,7 +51,7 @@ int main(int argc, char** argv)
 	
 	return 0;
 }
-void Draw()
+void Draw(Particle& b)
 {
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -44,9 +59,17 @@ void Draw()
 	//glRotatef(Drotation, 0.0, 1.0, 0.0);
 	DrawBoxGrid(1.0f, 0.0f, 0.01f, 0.0f);
 	glColor3f(0.5f, 0.1f, 0.1f);
-	DrawSphere(PosX, PosY, PosZ, RAD);
+	DrawSphere(b.R[0], b.R[1], b.R[2], b.rad);
 	//glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, WhiteMaterial);
 	//glutSolidCone(0.5f, 1.0f, 10, 10);
+
+	  // LeapFrog
+    for(int ii = 0; ii < conf.NSTEPS; ++ii) {
+    float t = conf.TMIN + ii*conf.DT;
+    timestep(conf.DT, ball);
+    compute_force(ball, conf);
+  }
+  //
 	
 	PosX += DX;
 	PosY += DY;
