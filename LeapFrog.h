@@ -18,8 +18,7 @@ struct Particle
 };
 
 struct Config {
-    float TMIN = 0.0;
-    int NSTEPS = 0;
+
     float DT = 0.0;
     float G = 0.0;
     float B = 0.0;
