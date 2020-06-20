@@ -9,11 +9,14 @@ GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };  /* Red diffuse light. */
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };  /* Infinite light location. */
 
 GLfloat rotangv = 0.005; //camera angle rotation frecuency
+
+//Delete?
 GLfloat PosX = 0.0f;   //Posición del centro del yoyo
 GLfloat PosY = 0.0f; 
 GLfloat PosZ = 0.0f;//------
 GLfloat RAD = 0.27f;  //radio
 GLfloat DX = 0.0003f;GLfloat DY = -0.0005f;GLfloat DZ = 0.0005f;
+//
 void Draw(void);
 void Initialize();
 int main(int argc, char** argv)
@@ -69,8 +72,8 @@ void Draw(Particle& b)
     timestep(conf.DT, ball);
     compute_force(ball, conf);
   }
-  //
-	
+  
+	//Delete?
 	PosX += DX;
 	PosY += DY;
 	PosZ += DZ;
