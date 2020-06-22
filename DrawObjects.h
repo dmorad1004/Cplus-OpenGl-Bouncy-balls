@@ -13,4 +13,4 @@ void DrawGrid(int HALF_GRID_SIZE, GLfloat GRID_SQUARE_SIZE, GLfloat GRID_HEIGHT)
 void FillSphereVertices();
 void DrawSphere(GLfloat centerx, GLfloat centery, GLfloat centerz, GLfloat radius);
 
-#endif // !_SPHERE_
+#endif  // !_SPHERE_
