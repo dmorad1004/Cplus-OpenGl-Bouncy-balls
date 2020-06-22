@@ -1,27 +1,32 @@
-#include <GL/glut.h>
-#include <GL/freeglut.h>
-#include <ctime>
+
+#pragma once
+#include <glut.h>
+#include<freeglut.h>
+#include<ctime>
 #include <iostream>
-#include "DrawObjects.h"
-#include "LeapFrog.h"
-int NN = 100;//number of timesteps per frame 
+#include"DrawObjects.h"
+#include"LeapFrog.h"
+#include "ObjModel.h"
+int NN = 1000;//number of timesteps per frame 
 Config config;
 Particle Pelota;
-//Particle Pelota2;
+Particle Pelota2;
+ObjLibrary::ObjModel ball;
 int auxiliar = 1;
-
+int collisions = 0;
 GLfloat Drotation = 0.05f;
 GLfloat light_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
 GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };  /* Infinite light location. */
 
 GLfloat rotangv = 0.005; //camera angle rotation frecuency
-GLfloat DT = 0.033f / NN;
+GLfloat DT = 0.010f / NN;
 void Draw(void);
 void Initialize();
 void idle();
 void Timer(int iUnused);
 void SetParticleParams(void);
+void draw_ball();
 
 int main(int argc, char** argv)
 {
@@ -31,7 +36,7 @@ int main(int argc, char** argv)
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(800, 600);
+	glutInitWindowSize(1280, 720);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("boucing");
 	Initialize();
@@ -39,6 +44,7 @@ int main(int argc, char** argv)
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glutDisplayFunc(Draw);
+	draw_ball();
 	glutIdleFunc(idle);
 
 	Timer(0);
@@ -52,14 +58,28 @@ void Draw()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	DrawSphere(Pelota.R[0], Pelota.R[1], Pelota.R[2], Pelota.rad);
-	//DrawSphere(Pelota2.R[0], Pelota2.R[1], Pelota2.R[2], Pelota2.rad);
-
+	glPushMatrix();
+	glTranslatef(Pelota2.R[0], Pelota2.R[1], Pelota2.R[2]);
+	glScalef(0.20f, 0.20f, 0.20f);
+	glCallList(1);
+	glPopMatrix();
 	DrawGrid(50, 0.1f, -1.0f);
 	//glRotatef(Drotation, 0.0, 1.0, 0.0);
 	DrawBoxGrid(1.0f, 0.0f, 0.01f, 0.0f);
 	glColor3f(0.5f, 0.1f, 0.1f);
 
 	glutSwapBuffers();
+}
+
+void draw_ball() 
+{
+	glNewList(1, GL_COMPILE);
+	glPushMatrix();
+	ball.load("ball/ball.obj");
+	ball.draw();
+	glPopMatrix();
+	glEndList();
+
 }
 
 void Initialize()
@@ -95,13 +115,13 @@ void idle()
 			GLfloat RAD = Pelota.rad;
 
 			compute_force(Pelota, config);
-			//compute_force(Pelota2, config);
+			compute_force(Pelota2, config);
 
 
 			timestep(DT, Pelota);
-			//timestep(DT, Pelota2);
+			timestep(DT, Pelota2);
 
-			//BallBallBounce(Pelota2, Pelota);
+			BallBallBounce(Pelota2, Pelota, collisions);
 
 
 		}
@@ -113,6 +133,7 @@ void idle()
 void Timer(int iUnused)
 {
 	auxiliar = 1;
+	std::cout << collisions << std::endl;
 	glutPostRedisplay();
 	glutTimerFunc((GLint)(DT * 1000 * NN), Timer, 0);
 
@@ -120,7 +141,7 @@ void Timer(int iUnused)
 
 void SetParticleParams(void)
 {
-	config.read("ConfigParams.txt");
-	Pelota.read("ParticleParams.txt");
-	//Pelota2.read("Particle2Params.txt");
+	config.read("ConfigParams.conf");
+	Pelota.read("ParticleParams.conf");
+	Pelota2.read("ParticleParams2.conf");
 }
