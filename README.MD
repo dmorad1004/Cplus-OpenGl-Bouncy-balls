@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h1>División de tareas primera parte</h1>
+<h1>División de tareas </h1>
 <b>Jose bernal:</b> 
 <p>Creación de ventana, tamaño de ventana y primera ambientación &#9745;</p> 
 <p> Encontrar la manera de que OpenGl lea los datos obtenidos por leapfrog &#9745;</p>
