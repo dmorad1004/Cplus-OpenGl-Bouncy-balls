@@ -17,7 +17,7 @@
   <p> Modificar Leapfrog para lograr el rebote con dos pelotas  &#9745;</p>
    <p> Grabar su parte de la expocisión &#9744;</p>
 
-<b>David Mora:</b> 
+<b>David Mora: </b> 
 <p>Creación pelota de tennis en blender con textura. &#9745;</p>
 <p> Animar la pelota creada mediante OpenGL &#9745; </p>
 <p> Implementar la pelota creada en blender al código &#9745; </p>
