@@ -19,7 +19,7 @@ void compute_force(Particle& b, const Config& c)
 
 
 
-   /* double delta = -1.0 - b.R[1] + b.rad;
+   /*  double delta = -1.0 - b.R[1] + b.rad;
     if (delta > 0) {
         b.F[1] += c.K * delta;
     }*/
