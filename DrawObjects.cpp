@@ -3,7 +3,7 @@
 
 
 
-//dividiremos la esfera en trozos discretos por cordenadas esféricas, variando phi y theta
+// dividiremos la esfera en trozos discretos por cordenadas esféricas, variando phi y theta
 GLfloat RedMaterial[4] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat BlueMaterial[4] = { 0.0, 0.0, 1.0, 1.0 };
 GLfloat YellowMaterial[4] = { 0.8,0.8,0.1,1.0 };
